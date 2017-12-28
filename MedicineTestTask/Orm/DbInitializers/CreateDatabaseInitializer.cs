@@ -6,7 +6,7 @@ using MedicineTestTask.Models.Entities;
 
 namespace MedicineTestTask.Orm.DbInitializers
 {
-    public class CreateDatabaseInitializer: DropCreateDatabaseIfModelChanges<MainDataContext>
+    public class CreateDatabaseInitializer: CreateDatabaseIfNotExists<MainDataContext>
     {
         protected override void Seed(MainDataContext context)
         {
@@ -14,8 +14,7 @@ namespace MedicineTestTask.Orm.DbInitializers
             {
                 try
                 {
-                    var patients = new List<Patient>();
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < 10; i++)
                     {
                         var patient = new Patient();
                         if (i % 2 == 0)
@@ -30,11 +29,11 @@ namespace MedicineTestTask.Orm.DbInitializers
                             patient.SecondName = $"Bower{i}";
                             patient.BirthDate = DateTime.Now.AddYears(-20);
                         }
-                        patient.Guid = new Guid();
-                        patients.Add(patient);
+                        patient.Guid = new Guid();                        
+                        context.Patients.Add(patient);
+                        context.SaveChanges();
                     }
-                    context.Patients.AddRange(patients);                        
-                    context.SaveChanges();
+                    
                     tranc.Commit();
                 }
                 catch
