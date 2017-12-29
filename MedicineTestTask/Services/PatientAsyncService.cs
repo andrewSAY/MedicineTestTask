@@ -18,7 +18,7 @@ namespace MedicineTestTask.Services
             _repository = repository;
         }
         public async Task<IEnumerable<PatientView>> GetFilteredPatientsAsync(int from, int to, string sortingProperty, SortDirection sortDirection)
-        {
+        {            
             var patients = await _repository
                 .FindFilteredAsync<Patient>(p => true, from, to, sortingProperty, sortDirection == SortDirection.Desc);
             return patients.Select(patient => new PatientView
