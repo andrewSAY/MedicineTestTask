@@ -8,7 +8,7 @@ using MedicineTestTask.Interfaces;
 
 namespace MedicineTestTask.Repositories
 {
-    public class CommonCommitter: IEntityStateCommitter
+    public class CommonCommitter: ICommitter
     {
         protected readonly IMainDataContext _context;
         public CommonCommitter(IDataContext context)

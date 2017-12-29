@@ -29,7 +29,7 @@ namespace MedicineTestTask.Orm.DbInitializers
                             patient.SecondName = $"Bower{i}";
                             patient.BirthDate = DateTime.Now.AddYears(-20);
                         }
-                        patient.Guid = new Guid();                        
+                        patient.Guid = Guid.NewGuid();                        
                         context.Patients.Add(patient);
                         context.SaveChanges();
                     }
