@@ -63,6 +63,17 @@ namespace MedicineTestTask.Interfaces
         /// <param name="filter">Выражение, задающее преобразование найденных сущнсотей к типу TResult</param>
         /// <param name="includedePropertyNames">Коллекция имен свойств, для которых должны быть загружены значнеия</param>
         /// <returns>Возвращает коллекцию объектов</returns>
-        Task<IEnumerable<TEntity>> FindByAsync<TEntity>(Expression<Func<TEntity, bool>> condition, IEnumerable<string> includedePropertyNames) where TEntity : class;        
+        Task<IEnumerable<TEntity>> FindByAsync<TEntity>(Expression<Func<TEntity, bool>> condition, IEnumerable<string> includedePropertyNames) where TEntity : class;
+        /// <summary>
+        /// Возвращает фрагмент коллекции сущностей после сортировки
+        /// </summary>
+        /// <typeparam name="TEntity">Тип сущностей</typeparam>
+        /// <param name="condition">Выражение, представляющее условие поиска</param>
+        /// <param name="from">Номер записи от которой возвращать сущности, включительно</param>
+        /// <param name="to">Номер записи по которую возвращать сущности, включительно</param>
+        /// <param name="sortingProperty">Направление сортировки</param>
+        /// <param name="descSorting">Задает должна ли быть сортировка обратно. По умолчанию false</param>
+        /// <returns>Коллекция сущностей</returns>
+        Task<IEnumerable<TEntity>> FindFilteredAsync<TEntity>(Expression<Func<TEntity, bool>> condition, int from, int to, string sortingProperty, bool descSorting = false) where TEntity : class;
     }
 }

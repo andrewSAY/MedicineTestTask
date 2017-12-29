@@ -17,14 +17,21 @@ namespace MedicineTestTask.Services
         {
             _repository = repository;
         }
-        public Task<IEnumerable<PatientView>> GetFilteredPatientsAsync(int from, int to, string sortedProperty, SortDirection sortDirection)
+        public async Task<IEnumerable<PatientView>> GetFilteredPatientsAsync(int from, int to, string sortingProperty, SortDirection sortDirection)
         {
-            throw new NotImplementedException();
+            var patients = await _repository
+                .FindFilteredAsync<Patient>(p => true, from, to, sortingProperty, sortDirection == SortDirection.Desc);
+            return patients.Select(patient => new PatientView
+            {
+                FirstName = patient.FirstName,
+                SecondName = patient.SecondName,
+                BirthDate = patient.BirthDate
+            });
         }
 
-        public Task<IEnumerable<PatientView>> GetPatientsAsync()
+        public async Task<IEnumerable<PatientView>> GetPatientsAsync()
         {
-            return _repository.FindByAsync<Patient, PatientView>(patient => true
+            return await _repository.FindByAsync<Patient, PatientView>(patient => true
                 , patient => new PatientView
                 {                    
                     FirstName = patient.FirstName,

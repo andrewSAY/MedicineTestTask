@@ -18,10 +18,10 @@ namespace MedicineTestTask.Interfaces
         /// </summary>
         /// <param name="from">Номер записи от которой возвращать пациентов, включительно</param>
         /// <param name="to">Номер записи по которую возвращать пациентов, включительно</param>
-        /// <param name="sortedProperty">Направление сортировки</param>
+        /// <param name="sortingProperty">Направление сортировки</param>
         /// <param name="sortDirection">Имя поля, по которому должна проводиться сортировка</param>
         /// <returns>Коллекция сущностей</returns>
-        Task<IEnumerable<PatientView>> GetFilteredPatientsAsync(int from, int to, string sortedProperty, SortDirection sortDirection);
+        Task<IEnumerable<PatientView>> GetFilteredPatientsAsync(int from, int to, string sortingProperty, SortDirection sortDirection);
         /// <summary>
         /// Сохраняет нового пациента в источнике данных
         /// </summary>

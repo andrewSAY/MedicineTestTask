@@ -71,6 +71,9 @@
     <Compile Include="Fakes\FakeDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestClasses\DateIsGreaterThanAttributeTests.cs" />
+    <Compile Include="TestSupport\TestDbAsyncEnumerable.cs" />
+    <Compile Include="TestSupport\TestDbAsyncEnumerator.cs" />
+    <Compile Include="TestSupport\TestDbAsyncQueryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MedicineTestTask\MedicineTestTask.csproj">
