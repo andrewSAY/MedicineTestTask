@@ -1,7 +1,18 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
 }
 
-<h2>Index</h2>
+<h2>The patients list editor</h2>
+<div ng-app="app">
+    <div ng-controller="IndexEditorController">
+        <div dx-tabs="{items: tabs, onItemClick: goTo,  bindingOptions: {
+            selectedIndex: 'selectedTab'
+        }}"></div>
+        <div class="container">
+            <div ui-view></div>
+        </div>
+    </div>
+</div>
+
 
