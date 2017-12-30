@@ -5,4 +5,4 @@
 *.user
 .vs*/
 packages*/
-assets/lib*/
+MedicineTestTask/assets/lib*/
