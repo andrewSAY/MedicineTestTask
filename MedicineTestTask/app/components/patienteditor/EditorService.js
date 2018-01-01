@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .controller('EditorService', ['$http',
+        .service('EditorService', ['$http',
             function ($http) {
                 var apiUrl = 'api/Patients/';
                 this.SaveNew = function (patient) {

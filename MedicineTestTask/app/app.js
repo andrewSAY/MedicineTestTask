@@ -22,6 +22,7 @@
                         name: 'patienteditor.addnew',
                         url: '/addnew',
                         templateUrl: '/app/components/patienteditor/AddNew.html',
+                        controller: 'AddNewController'
                     },
                 ];
                 states.forEach(function (state) {

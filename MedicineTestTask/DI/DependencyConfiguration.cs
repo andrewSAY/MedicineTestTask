@@ -13,7 +13,7 @@ namespace MedicineTestTask.DI
     {
         public static void ConfigurateDependicies(DependencyResolver resolver)
         {
-            resolver.RegisterAsSingltone<IMainDataContext, MainDataContext>();
+            resolver.RegisterAsSingltone<IDataContext, MainDataContext>();
             resolver.Register<IAsyncRepository, CommonRepository>();
             resolver.Register<IPatientAsyncService, PatientAsyncService>();
         }

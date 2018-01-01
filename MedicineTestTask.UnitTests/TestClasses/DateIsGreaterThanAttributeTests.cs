@@ -11,10 +11,10 @@ namespace MedicineTestTask.UnitTests.TestClasses
     [TestFixture]
     public class DateIsGreaterThanAttributeTests
     {
-        private DateIsGreaterThanAttribute GetAttributeUnderTest(DateTime? etalonValue = null)
+        private DateIsGreaterThanAttribute GetAttributeUnderTest(string etalonValue = null)
         {
-            etalonValue = etalonValue ?? DateTime.Now;
-            return new DateIsGreaterThanAttribute(etalonValue.Value);
+            etalonValue = etalonValue ?? DateTime.Now.ToString();
+            return new DateIsGreaterThanAttribute(etalonValue);
         }
         [Test]
         public void IsValid_WasPassedNotDateTimeParameter_ThrowException()
@@ -26,7 +26,7 @@ namespace MedicineTestTask.UnitTests.TestClasses
         [Test]
         public void IsValid_WasPassedValueLessThenEtalonOne_ReturnFalse()
         {
-            var attribute = GetAttributeUnderTest(DateTime.Parse("1999.01.01 11:11"));
+            var attribute = GetAttributeUnderTest("1999.01.01 11:11");
             var passedArgument = DateTime.Parse("1990.01.01 11:11");
             var result = attribute.IsValid(passedArgument);
             Assert.IsFalse(result);
@@ -34,7 +34,7 @@ namespace MedicineTestTask.UnitTests.TestClasses
         [Test]
         public void IsValid_WasPassedValueGreaterThenEtalonOne_ReturnTrue()
         {
-            var attribute = GetAttributeUnderTest(DateTime.Parse("1999.01.01 11:11"));
+            var attribute = GetAttributeUnderTest("1999.01.01 11:11");
             var passedArgument = DateTime.Parse("2000.01.01 11:11");
             var result = attribute.IsValid(passedArgument);
             Assert.IsTrue(result);

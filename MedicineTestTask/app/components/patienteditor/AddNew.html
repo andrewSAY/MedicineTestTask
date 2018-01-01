@@ -1,8 +1,9 @@
-﻿<div class="row" style="max-width:600px;">
-    <div class="col-md-auto">
-        
-    </div>
-    <div class="col-md-auto">
-        <input class="form-control mr-sm-2" type="text" ng-model="patient.FirstName" placeholder="FirstName" aria-label="FirstName" />
-    </div>
-</div>
+﻿<div dx-form="{
+        formData: patient,
+        items: widgetOptions,
+        labelLocation: 'left',
+        onInitialized: initializedHandler,
+        showValidationSummary: true,
+        colCount: 1
+    }"></div>
+<div dx-button="{ text: 'Save patient', onClick: savePatient, type: 'normal' }"></div>

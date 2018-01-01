@@ -9,9 +9,9 @@ namespace MedicineTestTask.Attributes
     public class DateIsGreaterThanAttribute : ValidationAttribute
     {
         private DateTime _etalonDate;
-        public DateIsGreaterThanAttribute(DateTime etalonDate)
+        public DateIsGreaterThanAttribute(string etalonDateString)
         {
-            _etalonDate = etalonDate;
+            _etalonDate = DateTime.Parse(etalonDateString);
         }
         public override bool IsValid(object value)
         {
