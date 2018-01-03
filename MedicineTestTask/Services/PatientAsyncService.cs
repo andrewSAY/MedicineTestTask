@@ -41,6 +41,11 @@ namespace MedicineTestTask.Services
                 ,new List<string>());
         }
 
+        public async Task<long> GetTotalPatientCountAsync()
+        {
+            return await _repository.GetCountAsync<Patient>(patient => true);
+        }
+
         public async Task<bool> SaveNewPatientAsync(PatientView patientView)
         {
             var newPatient = GetPatient(patientView);

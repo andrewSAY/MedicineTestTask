@@ -22,9 +22,15 @@ namespace MedicineTestTask.Controllers
         {
             return await _patientService.GetPatientsAsync();
         }
-        public async Task<IEnumerable<PatientView>> PostFiltered(int from, int to, string fieldName, SortDirection sortDirection)
-        {
-            return await _patientService.GetFilteredPatientsAsync(from, to, fieldName, sortDirection);
+        public async Task<PatientCollectionView> GetSorted(int from, int to, string fieldName, SortDirection sortDirection)
+        {           
+            var patients = await _patientService.GetFilteredPatientsAsync(from, to, fieldName, sortDirection);
+            var patientsTotalCount= await _patientService.GetTotalPatientCountAsync();
+           
+            return new PatientCollectionView {
+                Items = patients,
+                TotalCount = patientsTotalCount
+            };
         }
         public async Task<HttpResponseMessage> PostNew(PatientView patient)
         {

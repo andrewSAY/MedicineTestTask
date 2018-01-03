@@ -71,7 +71,6 @@ namespace MedicineTestTask.Repositories
             //Определяем тип делегата, передаваемого методам IQueryable.OrderBy и IQueryable.OrderByDescending
             //вида Func<TEntity, SortingMemeberType>
             var delegateType = Expression.GetDelegateType(typeof(TEntity), sortingMemeberType);
-
             //Задаем параметр для лямбда-выражения (entity)
             //TEntity entity => 
             var sortingParameter = Expression.Parameter(typeof(TEntity), "entity");
@@ -86,22 +85,21 @@ namespace MedicineTestTask.Repositories
             //Применяем условие фильтрации
             var mainExpression = _context.Set<TEntity>()
                 .Where(condition);
-            //Добавляем вызов сортировки
-            if (descSorting)
-                Expression.Call(mainExpression as Expression, typeof(IQueryable).GetMethod("OrderBy"), sortingLambdaOther);
-            else
-                Expression.Call(mainExpression as Expression, typeof(IQueryable).GetMethod("OrderByDescending"), sortingLambdaOther);
-            //Добавляем вызов сортировки
-            //mainExpression = descSorting ?
-            //    mainExpression.OrderByDescending(sortingLambdaOther as Expression<Func<TEntity, object>>)
-            //    : mainExpression.OrderBy(sortingLambdaOther as Expression<Func<TEntity, object>>); ;
+            //Создаем вызов сортировки
+            var methodName = descSorting ? "OrderByDescending" : "OrderBy";
+            var orderedExpression = Expression.Call(typeof(Queryable), methodName, new Type[] { typeof(TEntity), sortingMemeberType }, mainExpression.Expression, sortingLambdaOther);
+            //Превращаем Expression сортировки в IQuaryable c добавленной сортировкой
+            mainExpression = mainExpression.Provider.CreateQuery(orderedExpression).Cast<TEntity>();
             //Определяем границы обрезания данных            
             var skipCount = from == 0 ? 0 : from - 1;
             var takeCount = from == 0 ? to : to - from + 1;
             //Вырезаем нужное количество записей после сортировки
             mainExpression = mainExpression.Skip(skipCount).Take(takeCount);
-
             return await mainExpression.ToListAsync();
+        }
+        public async Task<long> GetCountAsync<TEntity>(Expression<Func<TEntity, bool>> condition) where TEntity : class
+        {
+            return await _context.Set<TEntity>().CountAsync(condition);
         }
     }
 }

@@ -28,5 +28,10 @@ namespace MedicineTestTask.Interfaces
         /// <param name="patientView">Объект, содержащий данные пациента</param>
         /// <returns></returns>
         Task<bool> SaveNewPatientAsync(PatientView patientView);
+        /// <summary>
+        /// Подсчитывает общее количество пациентов
+        /// </summary>
+        /// <returns>Возвращает числовое значнеие Int64, отражающее общее количество пациентов</returns>
+        Task<long> GetTotalPatientCountAsync();
     }
 }

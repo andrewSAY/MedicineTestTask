@@ -91,7 +91,7 @@ namespace MedicineTestTask.UnitTests.Fakes
             mockSet.Setup(d => d.Remove(It.IsAny<T>())).Callback<T>(s => value.Remove(s));
             mockSet.Setup(d => d.RemoveRange(It.IsAny<IEnumerable<T>>())).Callback<IEnumerable<T>>(s => {
                 s.ToList().ForEach(s_ => value.Remove(s_));
-            });
+            });            
             var propertyList = GetType().GetProperties().ToList();
             foreach (var property in propertyList)
             {

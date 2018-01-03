@@ -110,7 +110,7 @@ namespace MedicineTestTask.UnitTests.TestClasses
         [Test]
         [TestCase(1, 3, "FirstName", SortDirection.Asc, "F3")]
         [TestCase(2, 3, "SecondName", SortDirection.Asc, "F3")]
-        [TestCase(1, 4, "BirthDate", SortDirection.Desc, "F4")]
+        [TestCase(1, 4, "BirthDate", SortDirection.Desc, "F1")]
         [TestCase(3, 5, "Id", SortDirection.Desc, "F3")]
         public void GetFilteredPatientsAsync_Always_FirstNameOfLastReturnedRecordEqualsExpectedOne(int from, int to, string sotringPropertyName, SortDirection sortDirection, string firstNameLastReturnedRecord)
         {
@@ -118,6 +118,17 @@ namespace MedicineTestTask.UnitTests.TestClasses
             var lastPatient = patients.LastOrDefault();
 
             Assert.AreEqual(firstNameLastReturnedRecord, lastPatient.FirstName);
+        }
+        [Test]
+        public void GetTotalPatientCountAsync_Always_ReturnExceptedNumber()
+        {
+            var dataContext = GetDataContext();
+            var service = GetServiceUnderTest(dataContext);
+
+            long expectedCount = 5;
+            var result = service.GetTotalPatientCountAsync().Result;
+
+            Assert.AreEqual(expectedCount, result);
         }
     }
 }

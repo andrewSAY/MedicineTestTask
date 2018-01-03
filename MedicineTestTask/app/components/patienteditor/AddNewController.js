@@ -22,8 +22,7 @@
                     }                                                            
                     EditorService.SaveNew($scope.patient)
                         .then(function (responce) {
-                            DevExpress.ui.notify("Saving was succeed.", "success", notificationShowTimeout);
-                            $state.go($scope.tabs[0].route);
+                            DevExpress.ui.notify("Saving was succeed.", "success", notificationShowTimeout);                            
                     })
                         .catch(function () {
                             DevExpress.ui.notify("Error happened during the request processing.", "error", notificationShowTimeout);

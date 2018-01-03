@@ -75,5 +75,12 @@ namespace MedicineTestTask.Interfaces
         /// <param name="descSorting">Задает должна ли быть сортировка обратно. По умолчанию false</param>
         /// <returns>Коллекция сущностей</returns>
         Task<IEnumerable<TEntity>> FindFilteredAsync<TEntity>(Expression<Func<TEntity, bool>> condition, int from, int to, string sortingProperty, bool descSorting = false) where TEntity : class;
+        /// <summary>
+        /// возвращает количечтво сущностей, соответсвующих условию поиска
+        /// </summary>
+        /// <typeparam name="TEntity">Тип сущности</typeparam>
+        /// <param name="condition">Выражение, представляющее условие поиска</param>
+        /// <returns></returns>
+        Task<long> GetCountAsync<TEntity>(Expression<Func<TEntity, bool>> condition) where TEntity : class;
     }
 }
