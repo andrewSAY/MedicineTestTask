@@ -145,12 +145,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ICommonLogger.cs" />
     <Compile Include="Interfaces\IDataContext.cs" />
     <Compile Include="Interfaces\ICommitter.cs" />
     <Compile Include="DI\IDependencyResolver.cs" />
     <Compile Include="Interfaces\IMainDataContext.cs" />
     <Compile Include="Interfaces\IPatientAsyncService.cs" />
     <Compile Include="Interfaces\IAsyncRepository.cs" />
+    <Compile Include="Logging\RequestLoggingHandler.cs" />
+    <Compile Include="Logging\WebApiLogger.cs" />
     <Compile Include="Migrations\201801010804369_Init.cs" />
     <Compile Include="Migrations\201801010804369_Init.Designer.cs">
       <DependentUpon>201801010804369_Init.cs</DependentUpon>

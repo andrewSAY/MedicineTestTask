@@ -42,7 +42,9 @@ namespace MedicineTestTask.DI
         private void CreateContainer()
         {
             _container = _builder.Build();
-            var httpConfig = GlobalConfiguration.Configuration;
+            //Инициализация вынесена из инициализации приложения сюда,
+            //чтобы скрыть использовнаие фреймворка Autofac от остального кода.            
+            var httpConfig = GlobalConfiguration.Configuration;            
             httpConfig.DependencyResolver = new AutofacWebApiDependencyResolver(_container);
         }
         public void Register<TInterface, TImplemenation>() where TImplemenation : TInterface
