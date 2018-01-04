@@ -1,6 +1,0 @@
-08:23:37.347 ## Info ## http://localhost:50620/api/Patients/GetSorted?fieldName=FirstName&from=1&sortDirection=0&to=12 ## 
-08:23:39.206 ## Info ## A request completed with a code 'OK' ## 
-08:26:17.990 ## Info ## http://localhost:50620/api/Patients/GetSorted?fieldName=FirstName&from=1&sortDirection=0&to=12 ## 
-08:26:19.687 ## Info ## A request completed with a code 'OK' ## 
-08:26:46.306 ## Info ## http://localhost:50620/api/Patients/GetSorted?fieldName=FirstName&from=1&sortDirection=0&to=8 ## 
-08:26:46.363 ## Info ## A request completed with a code 'OK' ## 
